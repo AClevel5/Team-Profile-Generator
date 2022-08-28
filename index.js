@@ -7,9 +7,61 @@ const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
 const Employee = require("./lib/employee");
 
-//Create Employee object (Either here or in Employee JS)
-// Prompt common questions Name, ID, Email
-const repeatQuestions = []
+// Common Question(s)
+const repeatQuestions = [
+    {
+        type: "input",
+        message: "Plese enter your name",
+        name: "name",
+    },
+    {
+        type: "input",
+        message: "Plese enter your ID",
+        name: "id",
+    },
+    {
+        type: "input",
+        message: "Plese enter your email",
+        name: "email",
+    },
+];
+
+//Manager Question(s)
+const managerQuestions = [
+    {
+        type: "input",
+        message: "Plese enter your office number",
+        name: "officeNumber",
+    }
+];
+
+//Engineer Question(s)
+const engineerQuestions = [
+    {
+        type: "input",
+        message: "Plese enter your GitHub Username",
+        name: "gitHubUserName",
+    }
+];
+
+//Intern Question(s)
+const internQuestions = [
+    {
+        type: "input",
+        message: "Plese enter your School",
+        name: "school",
+    }
+];
+
+//Final Question to add another employee or finish building team
+const finalQuestions = [
+    {
+        type: "list",
+        message: "Please add an Engineer, Intern, or select Finished building team",
+        choices: ["Engineer", "Intern", "Finished Building Team"],
+        name: "choice",
+    },
+];
 
 // Start with Manager prompt common questions and manager question
 // After manager prompt for select employee from list
