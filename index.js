@@ -5,10 +5,11 @@ const fs = require('fs');
 const Manager = require("./lib/manager");
 const Engineer = require("./lib/engineer");
 const Intern = require("./lib/intern");
-const Employee = require("./lib/employee"); 
+const Employee = require("./lib/employee");
 
 //Create Employee object (Either here or in Employee JS)
 // Prompt common questions Name, ID, Email
+const repeatQuestions = []
 
 // Start with Manager prompt common questions and manager question
 // After manager prompt for select employee from list
