@@ -2,8 +2,8 @@ function generateManager(data) {
     return `
     name is : ${data.name}
     id is : ${data.id}
-    email is : ${data.name}
-    github is : ${data.gitHub}
+    email is : ${data.email}
+    github is : ${data.gitHubUserName}
     `
 }
 module.exports = generateManager;

@@ -7,9 +7,13 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Employee = require("./lib/Employee");
 const { exit } = require('process');
+const generateHTML = require('./utils/generate_html');
+const generateEndHTML = require('./utils/generate_EndHtml')
 const generateManager = require('./utils/generate_manager');
 const generateEngineer = require('./utils/generate_engineer');
-const finalOutput = "index.html";
+// const generateEmployee = require('./utils/generate_employee');
+const generateIntern = require('./utils/generate_intern');
+const fileName = "index.html";
 
 //Empty Array to contain Employees
 let employees = [];
@@ -80,13 +84,14 @@ async function addInternOrEngineer(questions) {
             createEngineer()
         }
         else if (answer.selection === "Finished Building Team") {
-            exit()
+            appendToFile(fileName, generateEndHTML())
+            // exit()
         }
     })
 }
 
-function writeToFile(fileName, data) {
-    return fs.writeFileSync(path.join(process.cwd(), fileName), data, () => {
+async function writeToFile(fileName, data) {
+    await fs.writeFile(fileName, data, (error) => {
         if (error) throw error;
         console.log("Data Saved Successfully");
 
@@ -94,14 +99,32 @@ function writeToFile(fileName, data) {
     })
 };
 
-function appendToFile(fileName, data) {
-    return fs.appendFileSync(path.join(process.cwd(), fileName), data, () => {
+// function writeToFile(fileName, data) {
+//     return fs.writeFileSync(path.join(process.cwd(), fileName), data, () => {
+//         if (error) throw error;
+//         console.log("Data Saved Successfully");
+
+
+//     })
+// };
+
+async function appendToFile(fileName, data) {
+    await fs.appendFile(fileName, data, (error) => {
         if (error) throw error;
         console.log("Data Saved Successfully");
 
 
     })
 };
+
+// function appendToFile(fileName, data) {
+//     return fs.appendFileSync(path.join(process.cwd(), fileName), data, () => {
+//         if (error) throw error;
+//         console.log("Data Saved Successfully");
+
+
+//     })
+// };
 
 // Start with Manager prompt common questions and manager question
 // After manager prompt for select employee from list
@@ -111,7 +134,7 @@ async function createManager() {
         ...managerQuestions,
     ];
     console.log(managerQs);
-
+    await writeToFile(fileName, generateHTML());
     await inquirer.prompt(managerQs).then((response) => {
         // employees.push(
         //     new Manager(
@@ -121,9 +144,9 @@ async function createManager() {
         //         response.officeNumber,
         //     )
         // )
-        let managerData = new Manager(reponse.name, response.id, response.email, response.officeNumber)
-        writeToFile(fileName, generateManager(managerData))
-        addInternOrEngineer(finalQuestions)
+        let managerData = new Manager(response.name, response.id, response.email, response.officeNumber);
+        appendToFile(fileName, generateManager(managerData));
+        addInternOrEngineer(finalQuestions);
     }
     )
 
@@ -136,15 +159,17 @@ async function createEngineer() {
     ];
     console.log(engineerQs);
     await inquirer.prompt(engineerQs).then((response) => {
-        employees.push(
-            new Engineer(
-                response.name,
-                response.id,
-                response.email,
-                response.gitHubUserName,
-            )
-        )
-        addInternOrEngineer(finalQuestions)
+        // employees.push(
+        //     new Engineer(
+        //         response.name,
+        //         response.id,
+        //         response.email,
+        //         response.gitHubUserName,
+        //     )
+        // )
+        let engineerData = new Engineer(response.name, response.id, response.email, response.gitHubUserName)
+        appendToFile(fileName, generateEngineer(engineerData));
+        addInternOrEngineer(finalQuestions);
     }
     )
 
@@ -157,15 +182,17 @@ async function createIntern() {
     ];
     console.log(internQs);
     await inquirer.prompt(internQs).then((response) => {
-        employees.push(
-            new Intern(
-                response.name,
-                response.id,
-                response.email,
-                response.school,
-            )
-        )
-        addInternOrEngineer(finalQuestions)
+        // employees.push(
+        //     new Intern(
+        //         response.name,
+        //         response.id,
+        //         response.email,
+        //         response.school,
+        //     )
+        // )
+        let internData = new Intern(response.name, response.id, response.email, response.school)
+        appendToFile(fileName, generateIntern(internData));
+        addInternOrEngineer(finalQuestions);
     }
     )
 
