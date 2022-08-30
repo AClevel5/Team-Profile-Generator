@@ -6,7 +6,7 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Employee = require("./lib/Employee");
-const { exit } = require('process');
+// const { exit } = require('process');
 const generateHTML = require('./utils/generate_html');
 const generateEndHTML = require('./utils/generate_EndHtml')
 const generateManager = require('./utils/generate_manager');
@@ -16,7 +16,7 @@ const generateIntern = require('./utils/generate_intern');
 const fileName = "index.html";
 
 //Empty Array to contain Employees
-let employees = [];
+// let employees = [];
 
 // Common Question(s)
 const repeatQuestions = [
@@ -76,7 +76,7 @@ const finalQuestions = [
 
 async function addInternOrEngineer(questions) {
     await inquirer.prompt(questions).then((answer) => {
-        console.log(answer)
+        // console.log(answer)
         if (answer.selection === "Intern") {
             createIntern()
         }
@@ -93,7 +93,7 @@ async function addInternOrEngineer(questions) {
 async function writeToFile(fileName, data) {
     await fs.writeFile(fileName, data, (error) => {
         if (error) throw error;
-        console.log("Data Saved Successfully");
+        // console.log("Data Saved Successfully");
 
 
     })
@@ -111,7 +111,7 @@ async function writeToFile(fileName, data) {
 async function appendToFile(fileName, data) {
     await fs.appendFile(fileName, data, (error) => {
         if (error) throw error;
-        console.log("Data Saved Successfully");
+        // console.log("Data Saved Successfully");
 
 
     })
@@ -133,7 +133,7 @@ async function createManager() {
         ...repeatQuestions,
         ...managerQuestions,
     ];
-    console.log(managerQs);
+    // console.log(managerQs);
     await writeToFile(fileName, generateHTML());
     await inquirer.prompt(managerQs).then((response) => {
         // employees.push(
@@ -157,7 +157,7 @@ async function createEngineer() {
         ...repeatQuestions,
         ...engineerQuestions,
     ];
-    console.log(engineerQs);
+    // console.log(engineerQs);
     await inquirer.prompt(engineerQs).then((response) => {
         // employees.push(
         //     new Engineer(
@@ -180,7 +180,7 @@ async function createIntern() {
         ...repeatQuestions,
         ...internQuestions,
     ];
-    console.log(internQs);
+    // console.log(internQs);
     await inquirer.prompt(internQs).then((response) => {
         // employees.push(
         //     new Intern(
