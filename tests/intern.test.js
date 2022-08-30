@@ -12,3 +12,19 @@ describe("Intern", () => {
         })
     })
 });
+
+describe("getSchool", () => {
+    it("Should return School", () => {
+        const intern = new Intern("Alex", 24, "Alex@gmail.com", "Denver U");
+        const school = intern.getSchool();
+        expect(school).toEqual("Denver U");
+    });
+});
+
+describe("getRole", () => {
+    it("Should return Role", () => {
+        const intern = new Intern("Alex", 24, "Alex@gmail.com", "Denver U");
+        const role = intern.getRole();
+        expect(role).toEqual("Intern");
+    });
+});

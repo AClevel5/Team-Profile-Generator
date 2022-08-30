@@ -12,3 +12,19 @@ describe("Manager", () => {
         })
     })
 });
+
+describe("getofficeNumber", () => {
+    it("Should return office number", () => {
+        const manager = new Manager("Alex", 24, "Alex@gmail.com", 344);
+        const officeNumber = manager.getofficeNumber();
+        expect(officeNumber).toEqual(344);
+    });
+});
+
+describe("getRole", () => {
+    it("Should return Role", () => {
+        const manager = new Manager("Alex", 24, "Alex@gmail.com", 344);
+        const role = manager.getRole();
+        expect(role).toEqual("Manager");
+    });
+});

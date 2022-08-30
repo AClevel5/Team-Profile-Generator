@@ -12,3 +12,19 @@ describe("Engineer", () => {
         })
     })
 });
+
+describe("getGithub", () => {
+    it("Should return Github", () => {
+        const engineer = new Engineer("Alex", 24, "Alex@gmail.com", "Aclevel5");
+        const gitHub = engineer.getGithub();
+        expect(gitHub).toEqual("Aclevel5");
+    });
+});
+
+describe("getRole", () => {
+    it("Should return Role", () => {
+        const engineer = new Engineer("Alex", 24, "Alex@gmail.com", "Aclevel5");
+        const role = engineer.getRole();
+        expect(role).toEqual("Engineer");
+    });
+});
